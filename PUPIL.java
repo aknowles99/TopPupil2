@@ -7,65 +7,136 @@ public class PUPIL
 
     // number of members calculated after reading file
 
-    private String fName;
-    private String sName;
-    private int mark;
+    private TOPPUPIL pupil[];
+       int noOfToppupil;
+       int topmark;
 
     // CLASSes to open, create, read/write, close files
-    FILEREADCSV markFile;        // to read file from storage
+    FILEREADCSV markFile; 
+    // CLASSes to open, create, read/write, close files
+    FILEREADCSV resultsFile;        
 
     public PUPIL()  throws IOException
     {
         // create file handler objects
         markFile = new FILEREADCSV();
-
-        fName = "";
-        sName = "";
-
-        mark = 0;
+        
+resultsFile = new FILEREADCSV();
+       
+topmark = 0;
+ noOfToppupil = 49;
+      
     }
-
-    public void readMemberDetails(String dataItems)
+     public void processToppupil()  throws IOException
     {
-        // unpack string of row data into fields
-        String[] rowItems = dataItems.split(",");
-        // store each data item as instance property
-        fName = rowItems[0];
-        sName = rowItems[1];
-
-        mark = Integer.parseInt(rowItems[2]);
-
+        setUpToppupilList();
+        displayToppupil();
+        countMARK();
     }
 
-    public String writeDetails()
+    private void setUpToppupilList() throws IOException
     {
-        // join up data into a string to output as a row
-        // use "," to separate csv columns
-        String memberData = "";
-        memberData = memberData.concat(fName);
-        memberData = memberData.concat(",");
-        memberData = memberData.concat(sName);
-        memberData = memberData.concat(",");
-        memberData = memberData.concat(Integer.toString(mark));
-        return memberData;
+        // First user message
+        System.out.println("ScotFit Club: Membership BMI update/n");
+        System.out.println("** Preparing to read data file.");
+
+        // read file, fetch data as String array containing the rows
+        String[] dataRows = markFile.readCSVtable();
+        // calculate the number of member rows, skip headings
+        noOfToppupil = dataRows.length - 1;
+
+        // update user with number of rows with membership details
+        System.out.println("** " + noOfToppupil + " rows read.\n\n");
+
+        // prepare array for members
+        ToppupilList = new TOPPUPIL[noOfToppupil];
+        // create member objects and copy data from source
+        for  (int i = 0; i < noOfToppupil; i++) {
+            toppupilList[i] = new TOPPUPIL();
+            // adjust to skip headings
+            toppupilList[i].readToppupilDetails(dataRows[i+1]);
+        }
     }
+
+    public void displayToppupil() {
+        // Heading for the display
+        System.out.println("A listing of all applicants for the next year\n");
+        // results
+        for  (int i = 0; i < noOfToppupil; i++) {
+            ToppupilList[i].displayDetails();
+        }
+        // 2 blank line to separate this report from others.
+        System.out.print("\n\n\n");
+    }
+
+    public void countMARK() throws IOException
+    {
+        // *prepare a String to write data to disc
+        String fileContent = "";
+
+        System.out.println("A report of members within ideal BMI\n");
+
+        // start the count
+        int count = 0;
+        // loop for each item : member
+        for (int i = 0; i < noOfToppupil; i++)
+        {
+            // decide if current item: member matches target: bmi
+            if (toppupilList[i].getMARK() > topmark  )
+            {
+                // add 1 to count: for OK bmi
+                topmark = toppupilList[i].getMARK() ;
+                // *display the details for the member
+                toppupList[i].displayDetails();
+
+                // *use new line to separate rows in csv file, after 1st line
+                if (count>1) 
+                {
+                    fileContent = fileContent.concat("\n");
+                }
+                // *join on next line of data for writing to file
+                fileContent = fileContent.concat(toppupilList[i].writeDetails());
+            }
+        }
+        // display the final count: bmi
+        System.out.println("\n Top mark is  : " + topmark);
+        // A blank line to separate this report from others.
+        System.out.println();
+
+        // *send for writing to file as a string containing all data
+        System.out.println("** Preparing to write data file.");
+        resultFile.writeCSVtable(fileContent);
+        System.out.println("** File written and closed.");
+    }
+
+    public static void main(String[] args)  throws IOException
+    {
+        PUPIL myPupil = new PUPIL();
+        myPupil.processToppupil();
+    }
+}
+    
 
   
-    public void findMaxData()  {
+
+   
+
+  
+    //public void findMaxData()  {
         // choose position of first value
-        int toppupil = 0;
+       // int toppupil = 0;
 
         // repeat for the REST of the array
 
-        for (int i=0; i<49; i++) {
+     //   for (int i=0; i<49; i++) {
 
             //compare current value with best value
             //if (dataList[i].getData() < dataList[maxDataPosition].getData()) {
                 // update the position of the best value
             //    toppupil = mark;
-            }
-        }
-    }
+          //  }
+        //}
+    //}
 
   //  public static void main(String[] args)  throws IOException
    // {
@@ -77,3 +148,8 @@ public class PUPIL
 
 //}
 
+
+
+//member=toppupil
+//club=pupil
+//bmi=mark
