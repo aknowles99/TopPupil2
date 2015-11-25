@@ -1,17 +1,15 @@
 
-
 import javax.swing.JOptionPane;    
-
 public class TOPPUPIL
 {
-   
-   private String fName;
+
+    private String fName;
     private String sName;
     private int mark;
     public TOPPUPIL()
     {
         // initialise instance variables
-          fName = "";
+        fName = "";
         sName = "";
 
         mark = 0;
@@ -41,7 +39,7 @@ public class TOPPUPIL
         return memberData;
     }
 
-    public float getMARK() 
+    public int getMARK() 
     {
         return mark;
     }
@@ -50,8 +48,8 @@ public class TOPPUPIL
     {
         // output basic details
         System.out.print("Member: " + fName + " " + sName);
-        System.out.print(",  BMI is ");
-        System.out.printf("%.2f", bmi);
+        System.out.print(",  mark is ");
+        System.out.printf("%.2f", mark );
         System.out.println();
     }
 

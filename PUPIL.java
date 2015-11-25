@@ -6,28 +6,29 @@ public class PUPIL
     // array of MEMBER objects
 
     // number of members calculated after reading file
-
-    private TOPPUPIL pupil[];
-       int noOfToppupil;
-       int topmark;
+    
+    private TOPPUPIL toppupillist[];
+    int noOfToppupil;
+    int topmark;
 
     // CLASSes to open, create, read/write, close files
     FILEREADCSV markFile; 
     // CLASSes to open, create, read/write, close files
-    FILEREADCSV resultsFile;        
+    FILEWRITECSV resultsFile;        
 
     public PUPIL()  throws IOException
     {
         // create file handler objects
         markFile = new FILEREADCSV();
-        
-resultsFile = new FILEREADCSV();
-       
-topmark = 0;
- noOfToppupil = 49;
-      
+
+        resultsFile = new FILEWRITECSV();
+
+        topmark = 0;
+        noOfToppupil = 49;
+
     }
-     public void processToppupil()  throws IOException
+
+    public void processToppupil()  throws IOException
     {
         setUpToppupilList();
         displayToppupil();
@@ -49,12 +50,12 @@ topmark = 0;
         System.out.println("** " + noOfToppupil + " rows read.\n\n");
 
         // prepare array for members
-        ToppupilList = new TOPPUPIL[noOfToppupil];
+        toppupillist = new TOPPUPIL[noOfToppupil];
         // create member objects and copy data from source
         for  (int i = 0; i < noOfToppupil; i++) {
-            toppupilList[i] = new TOPPUPIL();
+            toppupillist[i] = new TOPPUPIL();
             // adjust to skip headings
-            toppupilList[i].readToppupilDetails(dataRows[i+1]);
+            toppupillist[i].readToppupilDetails(dataRows[i+1]);
         }
     }
 
@@ -63,7 +64,7 @@ topmark = 0;
         System.out.println("A listing of all applicants for the next year\n");
         // results
         for  (int i = 0; i < noOfToppupil; i++) {
-            ToppupilList[i].displayDetails();
+            toppupillist[i].displayDetails();
         }
         // 2 blank line to separate this report from others.
         System.out.print("\n\n\n");
@@ -82,12 +83,12 @@ topmark = 0;
         for (int i = 0; i < noOfToppupil; i++)
         {
             // decide if current item: member matches target: bmi
-            if (toppupilList[i].getMARK() > topmark  )
+            if (toppupillist[i].getMARK() > topmark)
             {
                 // add 1 to count: for OK bmi
-                topmark = toppupilList[i].getMARK() ;
+                topmark = toppupillist[i].getMARK() ;
                 // *display the details for the member
-                toppupList[i].displayDetails();
+                toppupillist[i].displayDetails();
 
                 // *use new line to separate rows in csv file, after 1st line
                 if (count>1) 
@@ -95,7 +96,7 @@ topmark = 0;
                     fileContent = fileContent.concat("\n");
                 }
                 // *join on next line of data for writing to file
-                fileContent = fileContent.concat(toppupilList[i].writeDetails());
+                fileContent = fileContent.concat(toppupillist[i].writeDetails());
             }
         }
         // display the final count: bmi
@@ -105,7 +106,7 @@ topmark = 0;
 
         // *send for writing to file as a string containing all data
         System.out.println("** Preparing to write data file.");
-        resultFile.writeCSVtable(fileContent);
+        resultsFile.writeCSVtable(fileContent);
         System.out.println("** File written and closed.");
     }
 
@@ -115,40 +116,34 @@ topmark = 0;
         myPupil.processToppupil();
     }
 }
-    
 
   
-
    
-
   
-    //public void findMaxData()  {
-        // choose position of first value
-       // int toppupil = 0;
+//public void findMaxData()  {
+// choose position of first value
+// int toppupil = 0;
 
-        // repeat for the REST of the array
+// repeat for the REST of the array
 
-     //   for (int i=0; i<49; i++) {
+//   for (int i=0; i<49; i++) {
 
-            //compare current value with best value
-            //if (dataList[i].getData() < dataList[maxDataPosition].getData()) {
-                // update the position of the best value
-            //    toppupil = mark;
-          //  }
-        //}
-    //}
-
-  //  public static void main(String[] args)  throws IOException
-   // {
-     //   PUPIL myPupil = new PUPIL();
-    //    myPupil.processMembers();
-   // }
+//compare current value with best value
+//if (dataList[i].getData() < dataList[maxDataPosition].getData()) {
+// update the position of the best value
+//    toppupil = mark;
+//  }
+//}
 //}
 
-
+//  public static void main(String[] args)  throws IOException
+// {
+//   PUPIL myPupil = new PUPIL();
+//    myPupil.processMembers();
+// }
 //}
 
-
+//}
 
 //member=toppupil
 //club=pupil

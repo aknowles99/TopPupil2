@@ -1,10 +1,14 @@
 #BlueJ class context
 comment0.params=
 comment0.target=PUPIL()
-comment1.params=dataItems
-comment1.target=void\ readMemberDetails(java.lang.String)
+comment1.params=
+comment1.target=void\ processToppupil()
 comment2.params=
-comment2.target=java.lang.String\ writeDetails()
+comment2.target=void\ setUpToppupilList()
 comment3.params=
-comment3.target=void\ findMaxData()
-numComments=4
+comment3.target=void\ displayToppupil()
+comment4.params=
+comment4.target=void\ countMARK()
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+numComments=6
