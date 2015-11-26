@@ -76,7 +76,7 @@ public class PUPIL
         String fileContent = "";
 
         System.out.println("A report of members within ideal BMI\n");
-
+         int personnumber = 0;
         // start the count
         int count = 0;
         // loop for each item : member
@@ -88,7 +88,7 @@ public class PUPIL
                 // add 1 to count: for OK bmi
                 topmark = toppupillist[i].getMARK() ;
                 // *display the details for the member
-                toppupillist[i].displayDetails();
+                personnumber = i;
 
                 // *use new line to separate rows in csv file, after 1st line
                 if (count>1) 
@@ -101,6 +101,7 @@ public class PUPIL
         }
         // display the final count: bmi
         System.out.println("\n Top mark is  : " + topmark);
+        System.out.println("which belongs to : " + personnumber);
         // A blank line to separate this report from others.
         System.out.println();
 

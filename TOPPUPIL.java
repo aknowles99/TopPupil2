@@ -48,8 +48,8 @@ public class TOPPUPIL
     {
         // output basic details
         System.out.print("Member: " + fName + " " + sName);
-        System.out.print(",  mark is ");
-        System.out.printf("%.2f", mark );
+        System.out.print(",  mark is " + mark);
+       
         System.out.println();
     }
 
