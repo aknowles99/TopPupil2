@@ -96,10 +96,12 @@ public class PUPIL
                     fileContent = fileContent.concat("\n");
                 }
                 // *join on next line of data for writing to file
-                fileContent = fileContent.concat(toppupillist[i].writeDetails());
+                
             }
+             fileContent = fileContent.concat(toppupillist[personnumber].writeDetails());
         }
         // display the final count: bmi
+       
         System.out.println("\n Top mark is  : " + topmark);
         System.out.println("which belongs to : " + personnumber);
         // A blank line to separate this report from others.
