@@ -31,12 +31,12 @@ public class PUPIL
 
     public void processToppupil()  throws IOException
     {
-        setUpToppupilList();
+        ToppupilList();
         displayToppupil();
         countMARK();
     }
 
-    private void setUpToppupilList() throws IOException
+    private void ToppupilList() throws IOException
     {
         // First user message
         System.out.println("ScotFit Club: Membership BMI update/n");
