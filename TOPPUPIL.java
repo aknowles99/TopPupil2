@@ -16,7 +16,7 @@ public class TOPPUPIL
     }
 
     // file handling store details from file
-    public void readToppupilDetails(String dataItems)
+    public void readToppupil(String dataItems)
     {
         String[] rowItems = dataItems.split(",");
         // store each data item as instance property
@@ -26,7 +26,7 @@ public class TOPPUPIL
         mark = Integer.parseInt(rowItems[2]);
     }
 
-    public String writeDetails()
+    public String write()
     {
         // join up data into a string to output as a row
         // use "," to separate csv columns
@@ -44,7 +44,7 @@ public class TOPPUPIL
         return mark;
     }
 
-    public void displayDetails()
+    public void display()
     {
         // output basic details
         System.out.print("Member: " + fName + " " + sName);

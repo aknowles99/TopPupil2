@@ -8,8 +8,9 @@ public class PUPIL
     // number of members calculated after reading file
     
     private TOPPUPIL toppupillist[];
-    int noOfToppupil;
     int topmark;
+    int noOfToppupil;
+
 
     // CLASSes to open, create, read/write, close files
     FILEREADCSV markFile; 
@@ -55,7 +56,7 @@ public class PUPIL
         for  (int i = 0; i < noOfToppupil; i++) {
             toppupillist[i] = new TOPPUPIL();
             // adjust to skip headings
-            toppupillist[i].readToppupilDetails(dataRows[i+1]);
+            toppupillist[i].readToppupil(dataRows[i+1]);
         }
     }
 
@@ -64,7 +65,7 @@ public class PUPIL
         System.out.println("A listing of all applicants for the next year\n");
         // results
         for  (int i = 0; i < noOfToppupil; i++) {
-            toppupillist[i].displayDetails();
+            toppupillist[i].display();
         }
         // 2 blank line to separate this report from others.
         System.out.print("\n\n\n");
@@ -98,7 +99,7 @@ public class PUPIL
                 // *join on next line of data for writing to file
                 
             }
-             fileContent = fileContent.concat(toppupillist[personnumber].writeDetails());
+             fileContent = fileContent.concat(toppupillist[personnumber].write());
         }
         // display the final count: bmi
        
