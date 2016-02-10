@@ -2,19 +2,19 @@
 import javax.swing.JOptionPane;    
 public class TOPPUPIL
 {
- private int mark;
-    private String sName;
-    private String fName;
+ private int Vmark;
+    private String VsName;
+    private String VfName;
     
    // private int mark;
-    private String memberData;
+    private String VmemberData;
     public TOPPUPIL()
     {
         // initialise instance variables
-        sName = "";
-        fName = "";
-        mark = 0;
-      memberData = "";
+        VsName = "";
+        VfName = "";
+        Vmark = 0;
+      VmemberData = "";
     }
 
     // file handling store details from file
@@ -22,26 +22,26 @@ public class TOPPUPIL
     {
         String[] rowItems = dataItems.split(",");
         // store each data item as instance property
-        sName = rowItems[0];
-        fName = rowItems[1];
+        VsName = rowItems[0];
+        VfName = rowItems[1];
 
-        mark = Integer.parseInt(rowItems[2]);
+        Vmark = Integer.parseInt(rowItems[2]);
     }
  public int getMARK() 
     {
-        return mark;
+        return Vmark;
     }
     public String write()
     {
         // join up data into a string to output as a row
         // use "," to separate csv columns
         
-        memberData = memberData.concat(fName);
-        memberData = memberData.concat(",");
-        memberData = memberData.concat(sName);
-        memberData = memberData.concat(",");
-        memberData = memberData.concat(Float.toString(mark));
-        return memberData;
+        VmemberData = VmemberData.concat(VfName);
+        VmemberData = VmemberData.concat(",");
+        VmemberData = VmemberData.concat(VsName);
+        VmemberData = VmemberData.concat(",");
+        VmemberData = VmemberData.concat(Float.toString(Vmark));
+        return VmemberData;
     }
 
    
@@ -49,8 +49,8 @@ public class TOPPUPIL
     public void display()
     {
         // output basic details
-        System.out.print("Member: " + fName + " " + sName);
-        System.out.print(",  mark is " + mark);
+        System.out.print("Member: " + VfName + " " + VsName);
+        System.out.print(",  mark is " + Vmark);
        
         System.out.println();
     }

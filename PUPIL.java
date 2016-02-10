@@ -8,8 +8,8 @@ public class PUPIL
     // number of members calculated after reading file
     
     private TOPPUPIL toppupillist[];
-    int topmark;
-    int noOfToppupil;
+    int Vtopmark;
+    int VnoOfToppupil;
 
 
     // CLASSes to open, create, read/write, close files
@@ -24,8 +24,8 @@ public class PUPIL
 
         resultsFile = new FILEWRITECSV();
 
-        topmark = 0;
-        noOfToppupil = 49;
+        Vtopmark = 0;
+        VnoOfToppupil = 49;
 
     }
 
@@ -45,15 +45,15 @@ public class PUPIL
         // read file, fetch data as String array containing the rows
         String[] dataRows = markFile.readCSVtable();
         // calculate the number of member rows, skip headings
-        noOfToppupil = dataRows.length - 1;
+        VnoOfToppupil = dataRows.length - 1;
 
         // update user with number of rows with membership details
-        System.out.println("** " + noOfToppupil + " rows read.\n\n");
+        System.out.println("** " + VnoOfToppupil + " rows read.\n\n");
 
         // prepare array for members
-        toppupillist = new TOPPUPIL[noOfToppupil];
+        toppupillist = new TOPPUPIL[VnoOfToppupil];
         // create member objects and copy data from source
-        for  (int i = 0; i < noOfToppupil; i++) {
+        for  (int i = 0; i < VnoOfToppupil; i++) {
             toppupillist[i] = new TOPPUPIL();
             // adjust to skip headings
             toppupillist[i].readToppupil(dataRows[i+1]);
@@ -64,7 +64,7 @@ public class PUPIL
         // Heading for the display
         System.out.println("A listing of all applicants for the next year\n");
         // results
-        for  (int i = 0; i < noOfToppupil; i++) {
+        for  (int i = 0; i < VnoOfToppupil; i++) {
             toppupillist[i].display();
         }
         // 2 blank line to separate this report from others.
@@ -77,34 +77,34 @@ public class PUPIL
         String fileContent = "";
 
         System.out.println("A report of members within ideal BMI\n");
-         int personnumber = 0;
+         int Vpersonnumber = 0;
         // start the count
-        int count = 0;
+        int Vcount = 0;
         // loop for each item : member
-        for (int i = 0; i < noOfToppupil; i++)
+        for (int i = 0; i < VnoOfToppupil; i++)
         {
             // decide if current item: member matches target: bmi
-            if (toppupillist[i].getMARK() > topmark)
+            if (toppupillist[i].getMARK() > Vtopmark)
             {
                 // add 1 to count: for OK bmi
-                topmark = toppupillist[i].getMARK() ;
+                Vtopmark = toppupillist[i].getMARK() ;
                 // *display the details for the member
-                personnumber = i;
+                Vpersonnumber = i;
 
                 // *use new line to separate rows in csv file, after 1st line
-                if (count>1) 
+                if (Vcount>1) 
                 {
                     fileContent = fileContent.concat("\n");
                 }
                 // *join on next line of data for writing to file
                 
             }
-             fileContent = fileContent.concat(toppupillist[personnumber].write());
+             fileContent = fileContent.concat(toppupillist[Vpersonnumber].write());
         }
         // display the final count: bmi
        
-        System.out.println("\n Top mark is  : " + topmark);
-        System.out.println("which belongs to : " + personnumber);
+        System.out.println("\n Top mark is  : " + Vtopmark);
+        System.out.println("which belongs to : " + Vpersonnumber);
         // A blank line to separate this report from others.
         System.out.println();
 
